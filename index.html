@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Indice dimostrativo di un corso: slide, dispense e test per ogni argomento.">
+<title>Materiali del corso</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#fff;color:#173047;font:1.1rem/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}main{width:min(1040px,calc(100% - 40px));margin:64px auto}h1{font-size:clamp(2rem,5vw,3rem);line-height:1.15;letter-spacing:-.03em;margin:0 0 14px}.intro{color:#556575;margin:0 0 42px}.topic{display:grid;grid-template-columns:48px 1fr auto;align-items:center;gap:20px;padding:27px 0;border-bottom:1px solid #d9e2e9}.topic:first-child{border-top:2px solid #173047}ol{list-style:none;margin:0;padding:0}.number{color:#55758e;font-size:.95rem;font-weight:600}h2{font-size:1.15rem;margin:0;line-height:1.4;font-weight:650}.materials{display:flex;gap:10px}button{font:inherit;font-size:1rem;padding:9px 17px;background:#fff;color:#086b9a;border:1px solid #aac5d6;border-radius:5px;cursor:pointer}button:hover{background:#edf6fb;border-color:#086b9a}button:focus-visible{outline:3px solid #de9a1d;outline-offset:4px}.materials button:first-child{background:#086b9a;color:white;border-color:#086b9a}.materials button:first-child:hover{background:#064e71}.note{font-size:.95rem;color:#637583;margin:27px 0 0}dialog{border:1px solid #c1d1dd;border-radius:8px;padding:30px;max-width:520px;width:calc(100% - 36px);color:#173047}dialog::backdrop{background:rgba(10,29,46,.45)}dialog h2{font-size:1.45rem;margin-bottom:12px}dialog p{color:#556575;margin:0 0 24px}dialog .label{font-size:.9rem;color:#086b9a;margin-bottom:8px}dialog button{display:block;margin-left:auto}@media(max-width:760px){main{margin:38px auto}.topic{grid-template-columns:36px 1fr;gap:12px}.materials{grid-column:2;flex-wrap:wrap}h2{font-size:1.1rem}button{padding:9px 15px}}
+</style>
+</head>
+<body>
+<main>
+<h1>Materiali del corso</h1>
+<p class="intro">Scegli un argomento e consulta slide, dispensa o test.</p>
+<ol aria-label="Argomenti del corso"><li class="topic"><span class="number">01</span><h2>CPU, memoria e I/O</h2><div class="materials"><button data-topic="CPU, memoria e I/O" data-kind="Slide">Slide</button><button data-topic="CPU, memoria e I/O" data-kind="Dispensa">Dispensa</button><button data-topic="CPU, memoria e I/O" data-kind="Test">Test</button></div></li>
+<li class="topic"><span class="number">02</span><h2>Sistemi operativi</h2><div class="materials"><button data-topic="Sistemi operativi" data-kind="Slide">Slide</button><button data-topic="Sistemi operativi" data-kind="Dispensa">Dispensa</button><button data-topic="Sistemi operativi" data-kind="Test">Test</button></div></li>
+<li class="topic"><span class="number">03</span><h2>Reti e connessioni</h2><div class="materials"><button data-topic="Reti e connessioni" data-kind="Slide">Slide</button><button data-topic="Reti e connessioni" data-kind="Dispensa">Dispensa</button><button data-topic="Reti e connessioni" data-kind="Test">Test</button></div></li>
+<li class="topic"><span class="number">04</span><h2>Sicurezza informatica</h2><div class="materials"><button data-topic="Sicurezza informatica" data-kind="Slide">Slide</button><button data-topic="Sicurezza informatica" data-kind="Dispensa">Dispensa</button><button data-topic="Sicurezza informatica" data-kind="Test">Test</button></div></li>
+<li class="topic"><span class="number">05</span><h2>Backup e recupero dei dati</h2><div class="materials"><button data-topic="Backup e recupero dei dati" data-kind="Slide">Slide</button><button data-topic="Backup e recupero dei dati" data-kind="Dispensa">Dispensa</button><button data-topic="Backup e recupero dei dati" data-kind="Test">Test</button></div></li>
+<li class="topic"><span class="number">06</span><h2>Gestione degli utenti e degli accessi</h2><div class="materials"><button data-topic="Gestione degli utenti e degli accessi" data-kind="Slide">Slide</button><button data-topic="Gestione degli utenti e degli accessi" data-kind="Dispensa">Dispensa</button><button data-topic="Gestione degli utenti e degli accessi" data-kind="Test">Test</button></div></li></ol>
+<p class="note">Pagina dimostrativa: gli argomenti e i collegamenti sono esempi.</p>
+</main>
+<dialog aria-labelledby="material-title"><p class="label" id="material-kind"></p><h2 id="material-title"></h2><p id="material-text"></p><button id="close-dialog" type="button">Chiudi</button></dialog>
+<script>
+const dialog=document.querySelector('dialog');
+const descriptions={Slide:'Qui sarà collegata la presentazione di questo argomento.',Dispensa:'Qui sarà collegata la dispensa di questo argomento.',Test:'Qui sarà collegato il test di questo argomento.'};
+document.querySelectorAll('[data-topic]').forEach(button=>button.addEventListener('click',()=>{
+ document.getElementById('material-kind').textContent=button.dataset.kind+' · Esempio';
+ document.getElementById('material-title').textContent=button.dataset.topic;
+ document.getElementById('material-text').textContent=descriptions[button.dataset.kind];
+ dialog.showModal();
+}));
+document.getElementById('close-dialog').addEventListener('click',()=>dialog.close());
+dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
+</script>
+</body>
+</html>
